@@ -1,9 +1,9 @@
 import './FormInput.css'
-const FormInput = ({ placeholder, setUsername }) => {
+const FormInput = ({ label, handleChange, id, ...inputProps }) => {
     return (
         <div className="formInput">
-            <label htmlFor={placeholder}>{placeholder}</label>
-            <input id={placeholder} placeholder={placeholder} onChange={(e) => setUsername(e.target.value)} />
+            <label htmlFor={inputProps.placeholder}>{label}</label>
+            <input id={inputProps.placeholder} {...inputProps} onChange={handleChange} />
         </div>
     )
 }

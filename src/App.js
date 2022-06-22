@@ -1,16 +1,34 @@
 import { useState } from 'react';
 import './App.css';
 import FormInput from './components/FormInput';
+import inputs from './utils/inputs';
 
 function App() {
-  const [username, setUsername] = useState("")
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    birthday: "",
+    password: "",
+    confirmPassword: ""
+  })
+  console.log(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e)
+  }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
   return (
-    <div className="App">
-      <form>
-        <FormInput placeholder="UserName" setUsername={setUsername} />
-        <FormInput placeholder="Email" />
-        <FormInput placeholder="Full Name" />
-        <FormInput placeholder="something" />
+    <div className="app">
+      <form onSubmit={handleSubmit}>
+        {inputs().map((input) => {
+          return <FormInput handleChange={handleChange} key={input.id} {...input} value={formData[input.name]} />
+        })}
+        <button>Submit</button>
       </form>
     </div>
   );
