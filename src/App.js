@@ -24,12 +24,15 @@ function App() {
 
   return (
     <div className="app">
-      <form onSubmit={handleSubmit}>
-        {inputs().map((input) => {
-          return <FormInput handleChange={handleChange} key={input.id} {...input} value={formData[input.name]} />
-        })}
-        <button>Submit</button>
-      </form>
+      <section>
+        <h1>Register</h1>
+        <form onSubmit={handleSubmit}>
+          {inputs(formData).map((input) => {
+            return <FormInput handleChange={handleChange} key={input.id} {...input} value={formData[input.name]} />
+          })}
+          <button>Submit</button>
+        </form>
+      </section>
     </div>
   );
 }
